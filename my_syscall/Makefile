@@ -1,1 +1,1 @@
-obj-y += my_func.o 
+obj-y += gen_rand_num.o 

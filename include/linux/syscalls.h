@@ -1189,7 +1189,7 @@ asmlinkage long sys_ni_syscall(void);
 asmlinkage long sys_ni_posix_timers(void);
 
 /* Add your new system call function */
-asmlinkage long sys_my_syscall(void);
+asmlinkage long sys_get_rand_num(int *arr, int max);
 
 
 /*
