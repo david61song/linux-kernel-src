@@ -3,8 +3,7 @@
 
 SYSCALL_DEFINE2(gen_rand_num, int *, arr, int, max)
 {
-    void * kbuffer;
-
+    void *kbuffer;
     kbuffer = kmalloc(sizeof(int) * max, GFP_KERNEL);
 
     if (copy_from_user(kbuffer, arr, sizeof(int) * max))
