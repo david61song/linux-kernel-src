@@ -1,22 +1,20 @@
 #include <linux/syscalls.h>
 #include <linux/kernel.h>
+#include <linux/slab.h>
+
 
 
 // Helper function to get the nearest square root
 static int get_nearest_sqrt(int num) {
     int iter = 1;
-    while (iter * iter <= num) {
+    while (iter * iter < num) {
         iter++;
     }
-    return iter - 1;
+    return iter;
 }
 
 // Helper function to check if a number is prime
 static int check_if_prime(int num) {
-    // If we get a number less than 0, make positive
-    if (num < 0)
-        num *= -1;
-    // Numbers less than 2 are not prime
     if (num < 2) 
         return 0; 
     int sqrt_of_num = get_nearest_sqrt(num);
@@ -40,11 +38,12 @@ SYSCALL_DEFINE2(count_prime, int __user *, arr, int, max) {
     if (!kbuffer)
         return -ENOMEM;
 
+    /* Failed to copy from user */
     if (copy_from_user(kbuffer, arr, sizeof(int) * max)) {
         kfree(kbuffer);
         return -EFAULT;
     }
-
+    /* Check every random integer */
     for (i = 0; i < max; i++) {
         if (check_if_prime(kbuffer[i]))
             count++;
