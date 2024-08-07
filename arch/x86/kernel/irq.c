@@ -28,6 +28,7 @@
 
 DEFINE_PER_CPU_SHARED_ALIGNED(irq_cpustat_t, irq_stat);
 EXPORT_PER_CPU_SYMBOL(irq_stat);
+EXPORT_SYMBOL_GPL(vector_irq); // For Lab-12 Assignment 
 
 atomic_t irq_err_count;
 

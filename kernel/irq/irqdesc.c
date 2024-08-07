@@ -7,6 +7,7 @@
  * information is available in Documentation/core-api/genericirq.rst
  *
  */
+#include "linux/irqnr.h"
 #include <linux/irq.h>
 #include <linux/slab.h>
 #include <linux/export.h>
@@ -17,6 +18,7 @@
 #include <linux/sysfs.h>
 
 #include "internals.h"
+
 
 /*
  * lockdep: we want to handle all irq_desc locks as a single lock-class:
@@ -431,6 +433,8 @@ struct irq_desc *irq_to_desc(unsigned int irq)
 #ifdef CONFIG_KVM_BOOK3S_64_HV_MODULE
 EXPORT_SYMBOL_GPL(irq_to_desc);
 #endif
+/* Added for Lab 12 */
+EXPORT_SYMBOL_GPL(irq_to_desc); 
 
 void irq_lock_sparse(void)
 {
